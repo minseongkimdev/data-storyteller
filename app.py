@@ -35,7 +35,7 @@ elif choice == 'Page2':
     elif page == 'aa' :
         st.title('aa')
 elif choice == 'Page3':
-    time.sleep(1)
+    time.sleep(5)
     if page == '건강을 챙기는 으르신':
         st.title('건강을 챙기는 으르신')
     elif page == 'aa' :
