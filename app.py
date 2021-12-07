@@ -244,11 +244,14 @@ if choice == 'Page1':
     st.text("\n")
 
     name = st.text_input('크루네임 입력', '크루')
-    if st.button("Submit"):
+    next = st.button("Submit")
+
+    if next :
         st.success(f'{name}님! 저희의 크루가 되어주셔서 감사해요💛')
     st.text("\n")
     st.text("\n")
     st.text("\n")
+
 elif choice == 'Page2':
     st.title('Page 2')
     page = st.radio(
@@ -273,7 +276,7 @@ elif choice == 'Page2':
 elif choice == 'Page3':
     st.title('Page 3')
 
-next = st.button('Go to next page')
+# next = st.button('Go to next page')
 
 
 # col1, col2 = st.beta_columns(2)
