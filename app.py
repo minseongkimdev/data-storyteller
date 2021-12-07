@@ -2,8 +2,7 @@ import streamlit as st
 import pickle as pkle
 import os.path
 
-# create a button in the side bar that will move to the next page/radio button choice
-next = st.button('Next on list')
+
 
 # will use this list and next button to increment page, MUST BE in the SAME order
 # as the list passed to the radio button
@@ -56,6 +55,8 @@ elif choice == 'Vision':
 elif choice == 'About':
     st.write('About page')
 
+# create a button in the side bar that will move to the next page/radio button choice
+next = st.button('Next on list')
 ##
 # import os
 # import streamlit as st
