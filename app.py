@@ -274,11 +274,14 @@ elif choice == 'Page3':
         common()
         vegan(f'{name}')
     elif page == '밤에 출출한 야식러':
+        common()
         supper(f'{name}')
     elif page == '생각없는 당신을위한 랜덤':
+        common()
         random(f'{name}')
-    # else:
-    #     worldcup(f'{name}')
+    else:
+        common()
+        worldcup(f'{name}')
 
 # next = st.button('Go to next page')
 
