@@ -224,6 +224,9 @@ pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 if choice == 'Page1':
     st.title('Page 1')
+
+elif choice == 'Page2':
+    st.title('Page 2')
     page = st.radio(
         "★원하는 서비스 선택★",
         ('건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
@@ -243,8 +246,6 @@ if choice == 'Page1':
         random(f'{name}')
     else:
         worldcup(f'{name}')
-elif choice == 'Page2':
-    st.title('Page 2')
 elif choice == 'Page3':
     st.title('Page 3')
 
