@@ -18,7 +18,7 @@ if next:
 
 choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
 pkle.dump(pages.index(choice), open('next.p', 'wb'))
-
+page = 'aa'
 if choice == 'Page1':
     st.title('Page 1')
 elif choice == 'Page2':
@@ -30,6 +30,10 @@ elif choice == 'Page2':
              '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
         # next = st.button("선택 완료")
 elif choice == 'Page3':
+    if page == '건강을 챙기는 으르신':
+        st.title('건강을 챙기는 으르신')
+    elif page == 'aa' :
+        st.title('aa')
     st.title('Page 3')
 
 next = st.button('Go to next page')
