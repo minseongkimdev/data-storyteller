@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle as pkle
 import os.path
+import time
 
 pages = ['Page1','Page2','Page3']
 
@@ -29,7 +30,12 @@ elif choice == 'Page2':
             ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
              '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
         # next = st.button("선택 완료")
+    if page == '건강을 챙기는 으르신':
+        st.title('건강을 챙기는 으르신')
+    elif page == 'aa' :
+        st.title('aa')
 elif choice == 'Page3':
+    time.sleep(1000)
     if page == '건강을 챙기는 으르신':
         st.title('건강을 챙기는 으르신')
     elif page == 'aa' :
