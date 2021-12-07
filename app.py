@@ -224,7 +224,7 @@ choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked
 pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 name = ''
-
+page = ''
 if choice == 'Page1':
     st.title('🎉푸드천국🎉')
     st.header('당신만의 푸드설계앱 foodheaven😊')
@@ -244,7 +244,7 @@ if choice == 'Page1':
     st.text("\n")
 
     name = st.text_input('크루네임 입력', '크루')
-    next = st.button("Submit")
+    next = st.button("입력 완료")
 
     if next :
         st.success(f'{name}님! 저희의 크루가 되어주셔서 감사해요💛')
@@ -253,14 +253,20 @@ if choice == 'Page1':
     st.text("\n")
 
 elif choice == 'Page2':
-    st.title('Page 2')
+    st.title('★원하는 서비스 선택★')
     page = st.radio(
-        "★원하는 서비스 선택★",
+        "",
         ('건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
          '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
     st.text("\n")
     st.text("\n")
     st.text("\n")
+
+    next = st.button("입력 완료")
+
+
+elif choice == 'Page3':
+
     if page == '건강을 챙기는 으르신':
         tandanji(f'{name}')
     elif page == '먹고죽자 치팅데이':
@@ -273,8 +279,6 @@ elif choice == 'Page2':
         random(f'{name}')
     else:
         worldcup(f'{name}')
-elif choice == 'Page3':
-    st.title('Page 3')
 
 # next = st.button('Go to next page')
 
