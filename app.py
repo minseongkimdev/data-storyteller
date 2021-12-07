@@ -222,6 +222,7 @@ pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 name = ''
 page = ''
+choice = 0
 if choice == 'Page1':
     st.title('🎉푸드천국🎉')
     st.header('당신만의 푸드설계앱 foodheaven😊')
@@ -250,12 +251,13 @@ if choice == 'Page1':
     st.text("\n")
 
 elif choice == 'Page2':
-    st.title('건강을 챙기는 으르신, 먹고죽자 치팅데이, 비건에의한 비건을위한, 밤에 출출한 야식러,생각없는 당신을위한 랜덤, 선택장애를 위한 월드컵')
+    st.title('★원하는 서비스 번호 입력★')
+    st.header('건강을 챙기는 으르신, 먹고죽자 치팅데이, 비건에의한 비건을위한, 밤에 출출한 야식러,생각없는 당신을위한 랜덤, 선택장애를 위한 월드컵')
     # page = st.radio(
     #     "",
     #     ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
     #      '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
-    st.text_input('★원하는 서비스 번호 입력★', 1)
+    choice = st.text_input('번호 입력★', 1)
     next = st.button("선택 완료")
     st.text("\n")
 
@@ -263,22 +265,22 @@ elif choice == 'Page3':
     st.title('★아래의 Form을 작성해주세요')
     print('page')
     print(page)
-    if page == '건강을 챙기는 으르신':
+    if choice == 1:
         common()
         tandanji(f'{name}')
-    elif page == '먹고죽자 치팅데이':
+    elif choice == 2:
         common()
         gocal(f'{name}')
-    elif page == '비건에의한 비건을위한':
+    elif choice == 3:
         common()
         vegan(f'{name}')
-    elif page == '밤에 출출한 야식러':
+    elif choice == 4:
         common()
         supper(f'{name}')
-    elif page == '생각없는 당신을위한 랜덤':
+    elif choice == 5:
         common()
         random(f'{name}')
-    else:
+    elif choice == 6 :
         common()
         worldcup(f'{name}')
 
