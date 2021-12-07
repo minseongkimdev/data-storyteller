@@ -18,7 +18,6 @@ display = Image.open('Logo.png')
 display = np.array(display)
 
 
-
 def home() :
     st.title('🎉푸드천국🎉')
     st.header('당신만의 푸드설계앱 foodheaven😊')
@@ -224,9 +223,32 @@ if next:
 choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
 pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
+name = ''
+
 if choice == 'Page1':
-    st.title('Page 1')
-    home()
+    st.title('🎉푸드천국🎉')
+    st.header('당신만의 푸드설계앱 foodheaven😊')
+
+    with st.beta_expander('서비스 소개 더보기'):
+        st.write("""
+
+    모두가 건강에 대해 걱정하지만 관심도가 낮으며, 특히 개별진단/케어 서비스는 있지만,
+    원포인트/전방위 케어 서비스 부재
+
+    만개의레시피DB + 식품영양성분DB 결합
+    냉부를 부탁해 + 부족한 영양소를 진단하고 영양관리 해주는 서비스 + 영양제 판매/일일 새벽배송
+
+         """)
+
+    st.text("\n")
+    st.text("\n")
+
+    name = st.text_input('크루네임 입력', '크루')
+    if st.button("Submit"):
+        st.success(f'{name}님! 저희의 크루가 되어주셔서 감사해요💛')
+    st.text("\n")
+    st.text("\n")
+    st.text("\n")
 elif choice == 'Page2':
     st.title('Page 2')
     page = st.radio(
