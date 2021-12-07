@@ -1,50 +1,15 @@
 import streamlit as st
-import pickle as pkle
-import os.path
-import time
+my_page = st.sidebar.radio('Page Navigation', ['page 1', 'page 2'])
 
-pages = ['Page1','Page2','Page3']
-
-if os.path.isfile('next.p'):
-    next_clicked = pkle.load(open('next.p', 'rb'))
-    if next_clicked == len(pages):
-        next_clicked = 0
+if my_page == 'page 1':
+    st.title('here is a page')
+    button = st.button('a button')
+    if button:
+        st.write('clicked')
 else:
-    next_clicked = 0
-
-if next:
-    next_clicked = next_clicked+1
-    if next_clicked == len(pages):
-        next_clicked = 0
-
-choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
-pkle.dump(pages.index(choice), open('next.p', 'wb'))
-page = 'aa'
-if choice == 'Page1':
-    st.title('Page 1')
-elif choice == 'Page2':
-    st.title('Page 2')
-    st.title('★원하는 서비스 선택★')
-    page = st.radio(
-            "",
-            ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
-             '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
-        # next = st.button("선택 완료")
-    if page == '건강을 챙기는 으르신':
-        st.title('건강을 챙기는 으르신')
-    elif page == 'aa' :
-        st.title('aa')
-elif choice == 'Page3':
-    time.sleep(5)
-    if page == '건강을 챙기는 으르신':
-        st.title('건강을 챙기는 으르신')
-    elif page == 'aa' :
-        st.title('aa')
-    st.title('Page 3')
-
-next = st.button('Go to next page')
-
-
+    st.title('this is a different page')
+    slide = st.slider('this is a slider')
+    slide
 ##
 # import os
 # import streamlit as st
