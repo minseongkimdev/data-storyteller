@@ -38,12 +38,15 @@ choice = st.sidebar.radio("go to",('Home','Resources', 'Gallery', 'Vision', 'Abo
 pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
 
 # finally get to whats on each page
+
 if choice == 'Home':
     st.write('this is home')
-    st.radio(
+    service = st.radio(
             "",
             ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
              '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
+    if service == '선택장애를 위한 월드컵':
+        st.write('선택장애를 위한 월드컵')
 elif choice == 'Resources':
     st.write('here is a resources page')
 elif choice == 'Gallery':
@@ -52,6 +55,7 @@ elif choice == 'Vision':
     st.write('The Vision')
 elif choice == 'About':
     st.write('About page')
+
 ##
 # import os
 # import streamlit as st
