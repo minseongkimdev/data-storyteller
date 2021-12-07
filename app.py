@@ -222,7 +222,7 @@ pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 name = ''
 page = ''
-choice = 0
+option = 0
 if choice == 'Page1':
     st.title('🎉푸드천국🎉')
     st.header('당신만의 푸드설계앱 foodheaven😊')
@@ -257,7 +257,7 @@ elif choice == 'Page2':
     #     "",
     #     ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
     #      '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
-    choice = st.text_input('번호 입력★', 1)
+    option = st.text_input('번호 입력★', 1)
     next = st.button("선택 완료")
     st.text("\n")
 
@@ -265,22 +265,22 @@ elif choice == 'Page3':
     st.title('★아래의 Form을 작성해주세요')
     print('page')
     print(page)
-    if choice == 1:
+    if option == 1:
         common()
         tandanji(f'{name}')
-    elif choice == 2:
+    elif option == 2:
         common()
         gocal(f'{name}')
-    elif choice == 3:
+    elif option == 3:
         common()
         vegan(f'{name}')
-    elif choice == 4:
+    elif option == 4:
         common()
         supper(f'{name}')
-    elif choice == 5:
+    elif option == 5:
         common()
         random(f'{name}')
-    elif choice == 6 :
+    elif option == 6 :
         common()
         worldcup(f'{name}')
 
