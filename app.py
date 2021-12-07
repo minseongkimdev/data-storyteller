@@ -21,6 +21,7 @@ pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 if choice == 'Page1':
     st.title('Page 1')
+    st.button('Go to next page')
 elif choice == 'Page2':
     st.title('Page 2')
 elif choice == 'Page3':
