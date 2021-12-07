@@ -1,8 +1,10 @@
 import os
 import streamlit as st
 import numpy as np
+import pickle as pkle
 import pandas as pd
 from PIL import  Image
+import os.path
 
 # Custom imports 
 from multipage import MultiPage
@@ -28,6 +30,35 @@ with st.beta_expander('서비스 소개 더보기'):
 냉부를 부탁해 + 부족한 영양소를 진단하고 영양관리 해주는 서비스 + 영양제 판매/일일 새벽배송
 
      """)
+
+
+pages = ['Page1','Page2','Page3']
+
+if os.path.isfile('next.p'):
+    next_clicked = pkle.load(open('next.p', 'rb'))
+    if next_clicked == len(pages):
+        next_clicked = 0
+else:
+    next_clicked = 0
+
+if next:
+    next_clicked = next_clicked+1
+    if next_clicked == len(pages):
+        next_clicked = 0
+
+choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
+pkle.dump(pages.index(choice), open('next.p', 'wb'))
+
+if choice == 'Page1':
+    st.title('Page 1')
+elif choice == 'Page2':
+    st.title('Page 2')
+elif choice == 'Page3':
+    st.title('Page 3')
+
+next = st.button('Go to next page')
+
+
 st.text("\n")
 st.text("\n")
 
