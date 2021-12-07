@@ -1,15 +1,32 @@
 import streamlit as st
-my_page = st.sidebar.radio('Page Navigation', ['page 1', 'page 2'])
+import pickle as pkle
+import os.path
 
-if my_page == 'page 1':
-    st.title('here is a page')
-    button = st.button('a button')
-    if button:
-        st.write('clicked')
+pages = ['Page1','Page2','Page3']
+
+if os.path.isfile('next.p'):
+    next_clicked = pkle.load(open('next.p', 'rb'))
+    if next_clicked == len(pages):
+        next_clicked = 0
 else:
-    st.title('this is a different page')
-    slide = st.slider('this is a slider')
-    slide
+    next_clicked = 0
+
+if next:
+    next_clicked = next_clicked+1
+    if next_clicked == len(pages):
+        next_clicked = 0
+
+choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
+pkle.dump(pages.index(choice), open('next.p', 'wb'))
+
+if choice == 'Page1':
+    st.title('Page 1')
+elif choice == 'Page2':
+    st.title('Page 2')
+elif choice == 'Page3':
+    st.title('Page 3')
+
+next = st.button('Go to next page')
 ##
 # import os
 # import streamlit as st
