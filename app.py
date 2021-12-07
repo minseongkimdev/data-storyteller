@@ -264,6 +264,7 @@ elif choice == 'Page2':
 elif choice == 'Page3':
     print('page')
     print(page)
+    common()
     if page == '건강을 챙기는 으르신':
         tandanji(f'{name}')
     elif page == '먹고죽자 치팅데이':
