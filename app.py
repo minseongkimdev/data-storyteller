@@ -274,8 +274,8 @@ elif choice == 'Page3':
         supper(f'{name}')
     elif page == '생각없는 당신을위한 랜덤':
         random(f'{name}')
-    else:
-        worldcup(f'{name}')
+    # else:
+    #     worldcup(f'{name}')
 
 # next = st.button('Go to next page')
 
