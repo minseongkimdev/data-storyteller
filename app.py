@@ -2,32 +2,52 @@ import streamlit as st
 import pickle as pkle
 import os.path
 
-pages = ['Page1','Page2','Page3']
+# create a button in the side bar that will move to the next page/radio button choice
+next = st.sidebar.button('Next on list')
 
+# will use this list and next button to increment page, MUST BE in the SAME order
+# as the list passed to the radio button
+new_choice = ['Home','Resources','Gallery','Vision','About']
+
+# This is what makes this work, check directory for a pickled file that contains
+# the index of the page you want displayed, if it exists, then you pick up where the
+#previous run through of your Streamlit Script left off,
+# if it's the first go it's just set to 0
 if os.path.isfile('next.p'):
     next_clicked = pkle.load(open('next.p', 'rb'))
-    if next_clicked == len(pages):
-        next_clicked = 0
+    # check if you are at the end of the list of pages
+    if next_clicked == len(new_choice):
+        next_clicked = 0 # go back to the beginning i.e. homepage
 else:
-    next_clicked = 0
+    next_clicked = 0 #the start
 
+# this is the second tricky bit, check to see if the person has clicked the
+# next button and increment our index tracker (next_clicked)
 if next:
-    next_clicked = next_clicked+1
-    if next_clicked == len(pages):
-        next_clicked = 0
+    #increment value to get to the next page
+    next_clicked = next_clicked +1
 
-choice = st.sidebar.radio("Pages",('Page1','Page2', 'Page3'), index=next_clicked)
-pkle.dump(pages.index(choice), open('next.p', 'wb'))
+    # check if you are at the end of the list of pages again
+    if next_clicked == len(new_choice):
+        next_clicked = 0 # go back to the beginning i.e. homepage
 
-if choice == 'Page1':
-    st.title('Page 1')
-    st.button('Go to next page')
-elif choice == 'Page2':
-    st.title('Page 2')
-elif choice == 'Page3':
-    st.title('Page 3')
+# create your radio button with the index that we loaded
+choice = st.sidebar.radio("go to",('Home','Resources', 'Gallery', 'Vision', 'About'), index=next_clicked)
 
-next = st.button('Go to next page')
+# pickle the index associated with the value, to keep track if the radio button has been used
+pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
+
+# finally get to whats on each page
+if choice == 'Home':
+    st.write('this is home')
+elif choice == 'Resources':
+    st.write('here is a resources page')
+elif choice == 'Gallery':
+    st.write('A Gallery of some sort')
+elif choice == 'Vision':
+    st.write('The Vision')
+elif choice == 'About':
+    st.write('About page')
 ##
 # import os
 # import streamlit as st
