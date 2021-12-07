@@ -221,7 +221,7 @@ if next:
         next_clicked = 0
 
 choice = st.sidebar.radio("목차",('Page1','Page2', 'Page3'), index=next_clicked)
-pkle.dump(pages.index(choice), open('next.p', 'wb'))
+# pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 name = ''
 page = ''
@@ -258,10 +258,11 @@ elif choice == 'Page2':
         "",
         ('원하는 서비스를 선택해주세요', '건강을 챙기는 으르신', '먹고죽자 치팅데이', '비건에의한 비건을위한', '밤에 출출한 야식러',
          '생각없는 당신을위한 랜덤', '선택장애를 위한 월드컵'))
-    next = st.button("선택 완료")
+    # next = st.button("선택 완료")
     st.text("\n")
 
 elif choice == 'Page3':
+    st.title('★아래의 Form을 작성해주세요')
     print('page')
     print(page)
     if page == '건강을 챙기는 으르신':
