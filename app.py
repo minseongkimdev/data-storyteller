@@ -22,6 +22,9 @@ import os
 #     "H?",
 #     ("Email", "Home phone", "Mobile phone")
 # )
+def load_image(image_file):
+    img = Image.open(image_file)
+    return img
 
 st.title('🎉ChrisKitchen🎉')
 st.header('당신만의 푸드설계앱 ChrisKitchen😊')
@@ -179,9 +182,7 @@ elif page == '레시피를 찾아드려요(추억소환)':
     memory(f'{name}')
 elif page == '생각없는 당신을위한 랜덤':
     random(f'{name}')
-def load_image(image_file):
-    img = Image.open(image_file)
-    return img
+
 # name = st.text_input('크루네임 입력', '민정')
 # if st.button("Submit"):
 #     # if name.title():
