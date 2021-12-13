@@ -6,6 +6,7 @@ import numpy as np
 # from tensorflow import keras
 # from tensorflow.keras.models import load_model
 from logging import getLogger
+import os
 
 # https://docs.streamlit.io/
 # streamlit run streamlit_foodai_final.py
@@ -123,6 +124,14 @@ def memory(name):
         if st.button("이미지 분석하기"):
             log.error('show log')
             log.error(uploaded_file.name)
+            file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type}
+            st.write(file_details)
+            img = load_image(uploaded_file)
+            st.image(img, height=250, width=250)
+            with open(os.path.join("tempDir", uploaded_file.name), "wb") as f:
+                f.write(uploaded_file.getbuffer())
+            st.success("Saved File")
+
 
             # img = keras.preprocessing.image.load_img(
             #     uploaded_file, target_size=(180, 180)
@@ -170,7 +179,9 @@ elif page == '레시피를 찾아드려요(추억소환)':
     memory(f'{name}')
 elif page == '생각없는 당신을위한 랜덤':
     random(f'{name}')
-
+def load_image(image_file):
+    img = Image.open(image_file)
+    return img
 # name = st.text_input('크루네임 입력', '민정')
 # if st.button("Submit"):
 #     # if name.title():
