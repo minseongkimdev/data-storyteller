@@ -134,6 +134,8 @@ def memory(name):
             with open(os.path.join(os.getcwd(), uploaded_file.name), "wb") as f:
                 f.write(uploaded_file.getbuffer())
             st.success("Saved File")
+            log.error(os.getcwd())
+            log.error(os.getcwd() +'/'+uploaded_file.name)
 
 
             # img = keras.preprocessing.image.load_img(
