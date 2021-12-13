@@ -121,19 +121,21 @@ def memory(name):
         log = getLogger("ms")
         log.error(uploaded_file)
         if st.button("이미지 분석하기"):
-            img = keras.preprocessing.image.load_img(
-                uploaded_file, target_size=(180, 180)
-            )  # './chicken.jpg'
-            img_array = keras.preprocessing.image.img_to_array(img)
-            img_array = tf.expand_dims(img_array, 0)  # Create a batch
-            model = keras.models.load_model('./kf_model.h5')
-            predictions = model.predict(img_array)
-            score = tf.nn.softmax(predictions[0])
+            log.error('show log')
 
-            st.text(
-                "{}(정확도 {:.2f}%)"
-                    .format(class_names[np.argmax(score)], 100 * np.max(score))
-            )
+            # img = keras.preprocessing.image.load_img(
+            #     uploaded_file, target_size=(180, 180)
+            # )  # './chicken.jpg'
+            # img_array = keras.preprocessing.image.img_to_array(img)
+            # img_array = tf.expand_dims(img_array, 0)  # Create a batch
+            # model = keras.models.load_model('./kf_model.h5')
+            # predictions = model.predict(img_array)
+            # score = tf.nn.softmax(predictions[0])
+            #
+            # st.text(
+            #     "{}(정확도 {:.2f}%)"
+            #         .format(class_names[np.argmax(score)], 100 * np.max(score))
+            # )
 
             # st.text("계란말이: 97.8%")
     st.text("\n")
