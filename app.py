@@ -22,9 +22,9 @@ import os
 #     "H?",
 #     ("Email", "Home phone", "Mobile phone")
 # )
-def load_image(image_file):
-    img = Image.open(image_file)
-    return img
+# def load_image(image_file):
+#     img = Image.open(image_file)
+    # return img
 
 st.title('🎉ChrisKitchen🎉')
 st.header('당신만의 푸드설계앱 ChrisKitchen😊')
@@ -129,7 +129,7 @@ def memory(name):
             log.error(uploaded_file.name)
             file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type}
             st.write(file_details)
-            img = load_image(uploaded_file)
+            img = Image.open(uploaded_file)
             st.image(img, height=250, width=250)
             with open(os.path.join("tempDir", uploaded_file.name), "wb") as f:
                 f.write(uploaded_file.getbuffer())
