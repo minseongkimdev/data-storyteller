@@ -131,7 +131,7 @@ def memory(name):
             st.write(file_details)
             # img = Image.open(uploaded_file)
             # st.image(img, height=250, width=250)
-            with open(os.path.join("/home/appuser/tempDir", uploaded_file.name), "wb") as f:
+            with open(os.path.join(os.getcwd(), uploaded_file.name), "wb") as f:
                 f.write(uploaded_file.getbuffer())
             st.success("Saved File")
 
