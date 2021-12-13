@@ -3,7 +3,7 @@ from PIL import Image
 import pandas as pd
 import numpy as np
 # import tensorflow as tf
-# from tensorflow import keras
+from tensorflow import keras
 # from tensorflow.keras.models import load_model
 from logging import getLogger
 import os
@@ -138,9 +138,9 @@ def memory(name):
             log.error(os.getcwd() +'/'+uploaded_file.name)
 
 
-            # img = keras.preprocessing.image.load_img(
-            #     uploaded_file, target_size=(180, 180)
-            # )  # './chicken.jpg'
+            img = keras.preprocessing.image.load_img(
+                os.getcwd() +'/'+uploaded_file.name, target_size=(180, 180)
+            )  # './chicken.jpg'
             # img_array = keras.preprocessing.image.img_to_array(img)
             # img_array = tf.expand_dims(img_array, 0)  # Create a batch
             # model = keras.models.load_model('./kf_model.h5')
