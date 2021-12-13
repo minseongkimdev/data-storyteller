@@ -129,8 +129,8 @@ def memory(name):
             log.error(uploaded_file.name)
             file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type}
             st.write(file_details)
-            img = Image.open(uploaded_file)
-            st.image(img, height=250, width=250)
+            # img = Image.open(uploaded_file)
+            # st.image(img, height=250, width=250)
             with open(os.path.join("tempDir", uploaded_file.name), "wb") as f:
                 f.write(uploaded_file.getbuffer())
             st.success("Saved File")
