@@ -105,24 +105,32 @@ def memory(name):
         '라면', '라볶이', '막국수', '만두', '매운탕', '멍게', '메추리알장조림', '멸치볶음', '무국', '무생채', '물냉면', '물회', '미역국', '미역줄기볶음', '불고기',
         '전복죽'
     ]
-
-    uploaded_file = st.file_uploader("파일찾기")
-    if uploaded_file:
-        st.image(uploaded_file, width=400)  # , caption="입력 데이터"
-        if st.button("이미지 분석하기"):
-            img = keras.preprocessing.image.load_img(
-                uploaded_file, target_size=(180, 180)
-            )  # './chicken.jpg'
-            img_array = keras.preprocessing.image.img_to_array(img)
-            img_array = tf.expand_dims(img_array, 0)  # Create a batch
-            model = keras.models.load_model('./kf_model.h5')
-            predictions = model.predict(img_array)
-            score = tf.nn.softmax(predictions[0])
-
-            st.text(
-                "{}(정확도 {:.2f}%)"
-                    .format(class_names[np.argmax(score)], 100 * np.max(score))
-            )
+    uploaded_file = st.file_uploader("Choose a file", type=['png', 'jpeg', 'jpg'])
+    # global data
+    if uploaded_file is not None:
+        st.image(uploaded_file, width=400)
+        # try:
+        #     data = pd.read_csv(uploaded_file)
+        # except Exception as e:
+        #     print(e)
+        #     data = pd.read_excel(uploaded_file)
+    # uploaded_file = st.file_uploader("파일찾기")
+    # if uploaded_file:
+    #     st.image(uploaded_file, width=400)  # , caption="입력 데이터"
+    #     if st.button("이미지 분석하기"):
+    #         img = keras.preprocessing.image.load_img(
+    #             uploaded_file, target_size=(180, 180)
+    #         )  # './chicken.jpg'
+    #         img_array = keras.preprocessing.image.img_to_array(img)
+    #         img_array = tf.expand_dims(img_array, 0)  # Create a batch
+    #         model = keras.models.load_model('./kf_model.h5')
+    #         predictions = model.predict(img_array)
+    #         score = tf.nn.softmax(predictions[0])
+    #
+    #         st.text(
+    #             "{}(정확도 {:.2f}%)"
+    #                 .format(class_names[np.argmax(score)], 100 * np.max(score))
+    #         )
 
             # st.text("계란말이: 97.8%")
     st.text("\n")
