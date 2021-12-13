@@ -122,6 +122,7 @@ def memory(name):
         log.error(uploaded_file)
         if st.button("이미지 분석하기"):
             log.error('show log')
+            log.error(uploaded_file.name)
 
             # img = keras.preprocessing.image.load_img(
             #     uploaded_file, target_size=(180, 180)
