@@ -2,11 +2,12 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
 from tensorflow import keras
-# from tensorflow.keras.models import load_model
-from logging import getLogger
+from tensorflow.keras.models import load_model
 import os
+import sys
+from fastai.vision import load_learner, open_image
 
 # https://docs.streamlit.io/
 # streamlit run streamlit_foodai_final.py
@@ -22,14 +23,11 @@ import os
 #     "H?",
 #     ("Email", "Home phone", "Mobile phone")
 # )
-# def load_image(image_file):
-#     img = Image.open(image_file)
-    # return img
 
 st.title('🎉ChrisKitchen🎉')
 st.header('당신만의 푸드설계앱 ChrisKitchen😊')
 
-with st.beta_expander('서비스 소개 더보기'):
+with st.expander('서비스 소개 더보기'):
     st.write("""
 
 모두가 건강에 대해 걱정하지만 관심도가 낮으며, 특히 개별진단/케어 서비스는 있지만,
@@ -110,55 +108,100 @@ def memory(name):
         '라면', '라볶이', '막국수', '만두', '매운탕', '멍게', '메추리알장조림', '멸치볶음', '무국', '무생채', '물냉면', '물회', '미역국', '미역줄기볶음', '불고기',
         '전복죽'
     ]
-    uploaded_file = st.file_uploader("파일 찾기", type=['png', 'jpeg', 'jpg'])
-    # global data
-    # if uploaded_file is not None:
-    #     st.image(uploaded_file, width=400)
-        # try:
-        #     data = pd.read_csv(uploaded_file)
-        # except Exception as e:
-        #     print(e)
-        #     data = pd.read_excel(uploaded_file)
-    # uploaded_file = st.file_uploader("파일찾기")
+
+    uploaded_file = st.file_uploader("파일찾기", type=['png', 'jpeg', 'jpg'])
     if uploaded_file:
         st.image(uploaded_file, width=400)  # , caption="입력 데이터"
-        log = getLogger("ms")
-        log.error(uploaded_file)
         if st.button("이미지 분석하기"):
-            log.error('show log')
-            log.error(uploaded_file.name)
+
             file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type}
             st.write(file_details)
-            # img = Image.open(uploaded_file)
-            # st.image(img, height=250, width=250)
             with open(os.path.join(os.getcwd(), uploaded_file.name), "wb") as f:
                 f.write(uploaded_file.getbuffer())
-            st.success("Saved File")
-            log.error(os.getcwd())
-            log.error(os.getcwd() +'/'+uploaded_file.name)
-
-
-            img = keras.preprocessing.image.load_img(
-                os.getcwd() +'/'+uploaded_file.name, target_size=(180, 180)
-            )  # './chicken.jpg'
+            file_path = os.getcwd() + '/' + uploaded_file.name
+            # img = keras.preprocessing.image.load_img(
+            #     file_path, target_size=(180, 180)
+            # ) # './chicken.jpg'
             # img_array = keras.preprocessing.image.img_to_array(img)
             # img_array = tf.expand_dims(img_array, 0)  # Create a batch
             # model = keras.models.load_model('./kf_model.h5')
             # predictions = model.predict(img_array)
             # score = tf.nn.softmax(predictions[0])
-            #
-            # st.text(
-            #     "{}(정확도 {:.2f}%)"
-            #         .format(class_names[np.argmax(score)], 100 * np.max(score))
-            # )
 
-            # st.text("계란말이: 97.8%")
+            TOP_N_OUTPUT = 3
+
+            class food_model(object):
+                def __init__(self):
+                    self.model = self.get_classifier("211213_model_resnet50_100epochs.pkl")
+
+                def softmax(self, x):
+                    e_x = np.exp(x - np.max(x))
+                    return e_x / e_x.sum(axis=0)
+
+                def read_image(self, impath):
+                    return open_image(impath)
+
+                def get_classifier(self, weights=None):
+                    model = load_learner(*os.path.split(weights))
+                    return model
+
+                def predict_images(self, model, img):
+                    pred_class, pred_idx, outputs = model.predict(img)
+                    classes = model.data.classes
+                    tmp = {}
+                    softmaxed = self.softmax(outputs.numpy())
+
+                    for o in softmaxed.argsort()[-3:][::-1]:
+                        tmp.update({classes[o]: softmaxed[o].item()})
+
+                    pred = max(tmp, key=lambda k: tmp[k])
+                    return tmp
+
+                def food_model_test(self, imageName):
+                    im = self.read_image(imageName)
+
+                    preds = self.predict_images(self.model, im)
+
+                    return preds
+
+            #             from predict import food_model
+            predict = food_model()
+            result = predict.food_model_test(file_path)
+
+            st.text(
+                "{}(정확도 {:.2f}%)"
+                    .format(list(result.keys())[0], 100 * list(result.values())[0])
+            )
+            title = list(result.keys())[0]
+
+            st.text("\n")
+            st.text("\n")
+            st.text("\n")
+            st.text("\n")
+            st.text("\n")
+
+            try:
+                data = {
+                    "user_name": name,
+                    "title": title
+                }
+                title = list(result.keys())[0]
+            except:
+                data = {
+                    "user_name": name,
+                    "title": 'default'
+                }
+            # title = 'default'
+
+            st.text('성공')
+            st.text(title)
+
     st.text("\n")
     st.text("\n")
     st.text("\n")
 
     if st.button('추천 레시피 보러가기'):
-        st.text('결과화면(수정필요)')
+        st.text(title)
     st.text("\n")
     st.text("\n")
     st.text("\n")
